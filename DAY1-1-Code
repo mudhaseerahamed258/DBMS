@@ -15,6 +15,9 @@ between 10,000 & 20,000
 salary 
 
 
+
+ANSWER:
+
 CREATE TABLE Emp (
     EmpNo INT PRIMARY KEY,
     EmpName VARCHAR(255),
