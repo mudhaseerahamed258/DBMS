@@ -1,0 +1,57 @@
+(1)Create an Emp table with the following fields:  
+(EmpNo, EmpName, Job,Basic, DA, HRA,PF, 
+GrossPay, NetPay)  
+(Calculate DA as 30% of Basic and HRA as 40% of 
+Basic)  
+( a ) Insert Five Records and calculate GrossPay and 
+NetPay.  
+( b ) Display the employees whose Basic is lowest in 
+each department .  
+( c ) If NetPay is less than <Rs. 10,000 add Rs. 1200 
+as special allowances .  
+( d ) Display the employees whose GrossPay lies 
+between 10,000 & 20,000  
+( e ) Display all the employees who earn maximum 
+salary 
+
+
+CREATE TABLE Emp (
+    EmpNo INT PRIMARY KEY,
+    EmpName VARCHAR(255),
+    Job VARCHAR(255),
+    Basic DECIMAL(10,2),
+    DA DECIMAL(10,2),
+    HRA DECIMAL(10,2),
+    PF DECIMAL(10,2),
+    GrossPay DECIMAL(10,2),
+    NetPay DECIMAL(10,2)
+);
+
+INSERT INTO Emp (EmpNo, EmpName, Job, Basic, DA, HRA, PF, GrossPay, NetPay)
+VALUES
+    (1, 'John Doe', 'Manager', 5000, 1500, 2000, 800, 0, 0),
+    (2, 'Jane Smith', 'Developer', 6000, 1800, 2400, 960, 0, 0),
+    (3, 'Alice Johnson', 'Designer', 4500, 1350, 1800, 720, 0, 0),
+    (4, 'Bob Brown', 'Analyst', 5500, 1650, 2200, 880, 0, 0),
+    (5, 'Eve Williams', 'Tester', 5200, 1560, 2080, 832, 0, 0);
+
+
+
+a) UPDATE Emp SET DA = Basic * 0.30, HRA = Basic * 0.40;
+
+
+b) UPDATE Emp SET GrossPay = Basic + DA + HRA;
+
+c) UPDATE Emp SET NetPay = GrossPay - PF;
+
+d) SELECT * FROM Emp WHERE Basic IN (
+    SELECT MIN(Basic) FROM Emp GROUP BY Job
+);
+
+e) UPDATE Emp SET NetPay = NetPay + 1200 WHERE NetPay < 10000;
+
+
+f) SELECT * FROM Emp WHERE GrossPay BETWEEN 10000 AND 20000;
+
+g) SELECT * FROM Emp WHERE GrossPay = (SELECT MAX(GrossPay) FROM Emp);
+
