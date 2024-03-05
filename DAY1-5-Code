@@ -1,0 +1,39 @@
+5. For the following given database, write SQL. 
+Queries: 
+person (driver_id#, name, address) 
+car (license, model, year) 
+accident (reportCno, date, location) 
+owns (driver id#, license) 
+participated (driver_id, car, report_number, 
+damage_amount) 
+(i) Find the total number of people who owned cars 
+that were involved in an accident in 2007. 
+(ii) Find the number of accidents in which the cars 
+belonging to Ajay were involved. 
+(iii) Find the number of accidents that were reported 
+in Mumbai region in the year 2004.
+
+ANSWER:
+
+(i) Find the total number of people who owned cars that were involved in an accident in 2007:
+
+SELECT COUNT(DISTINCT o.driver_id#)
+FROM owns o
+JOIN participated p ON o.license = p.car
+JOIN accident a ON p.report_number = a.reportCno
+WHERE YEAR(a.date) = 2007;
+
+(ii) Find the number of accidents in which the cars belonging to Ajay were involved:
+
+SELECT COUNT(DISTINCT p.report_number)
+FROM participated p
+JOIN owns o ON p.driver_id = o.driver_id#
+WHERE o.name = 'Ajay';
+
+(iii) Find the number of accidents that were reported in Mumbai region in the year 2004:
+
+SELECT COUNT(*)
+FROM accident
+WHERE YEAR(date) = 2004 AND location LIKE '%Mumbai%';
+
+
