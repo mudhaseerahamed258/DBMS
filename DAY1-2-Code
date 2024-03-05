@@ -1,0 +1,36 @@
+2. An Enterprise wishes to maintain a database to 
+automate its operations. Enterprise is divided into 
+certain departments and each department consists of 
+employees. The following two tables describes the 
+automation schemas  
+Dept (deptno, dname, loc)  
+Emp (empno, ename, job, mgr, hiredate, sal, comm, 
+deptno)  
+a) Update the employee salary by 15%, whose 
+experience is greater than 10 years.  
+b) Delete the employees, who completed 30 years of 
+service.  
+c) Display the manager who is having maximum 
+number of employees working under him? 
+
+ANSWER:
+
+a) Update the employee salary by 15% for those with experience greater than 10 years:
+
+UPDATE Emp
+SET sal = sal * 1.15
+WHERE hiredate < DATE_SUB(NOW(), INTERVAL 10 YEAR);
+
+b) Delete employees who completed 30 years of service:
+
+DELETE FROM Emp
+WHERE hiredate < DATE_SUB(NOW(), INTERVAL 30 YEAR);
+
+c) Display the manager who has the maximum number of employees working under him:
+
+SELECT mgr, COUNT(*) AS num_employees
+FROM Emp
+GROUP BY mgr
+ORDER BY num_employees DESC
+LIMIT 1;
+
