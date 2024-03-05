@@ -1,0 +1,59 @@
+4)
+a). Creates a CUSTOMERS table with column 
+name ID, NAME, AGE, ADDRESS and, SALARY 
+and ID as a primary key. 
+b).Insert a 5 new records into a table. 
+c). Delete record customer name john from a table. 
+d). Write the query to update customer salary whose 
+age is greater than 50 in a table. 
+e).Write the query to select the column name from a 
+table 
+f).Write the query to sort age in descending order 
+g).Write the query to delete a table Customers from 
+the database.
+
+ANSWER:
+
+a) Create the CUSTOMERS table:
+
+CREATE TABLE CUSTOMERS (
+    ID INT PRIMARY KEY,
+    NAME VARCHAR(255),
+    AGE INT,
+    ADDRESS VARCHAR(255),
+    SALARY DECIMAL(10, 2)
+);
+
+b)Insert 5 new records into the table:
+
+INSERT INTO CUSTOMERS (ID, NAME, AGE, ADDRESS, SALARY)
+VALUES
+(1, 'Alice', 25, '123 Main St', 50000.00),
+(2, 'Bob', 30, '456 Elm St', 60000.00),
+(3, 'Charlie', 40, '789 Oak St', 70000.00),
+(4, 'David', 55, '101 Pine St', 80000.00),
+(5, 'Eve', 60, '202 Maple St', 90000.00);
+
+
+c) Delete the record for customer name 'John':
+
+DELETE FROM CUSTOMERS WHERE NAME = 'John';
+
+d) Update customer salary for those whose age is greater than 50:
+
+UPDATE CUSTOMERS SET SALARY = SALARY * 1.1 WHERE AGE > 50;
+
+
+e) Select the column names from the table:
+
+SELECT COLUMN_NAME
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'CUSTOMERS';
+
+f) Sort the age in descending order:
+
+SELECT * FROM CUSTOMERS ORDER BY AGE DESC;
+
+g) Delete the table Customers from the database:
+
+DROP TABLE CUSTOMERS;
