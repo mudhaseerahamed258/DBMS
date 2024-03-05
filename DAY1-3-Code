@@ -1,0 +1,55 @@
+ANSWER:
+
+a) Create a table STUDENT:
+
+CREATE TABLE STUDENT (
+    StdID NUMBER PRIMARY KEY,
+    StdName VARCHAR(30) NOT NULL,
+    Sex VARCHAR(6) CHECK (Sex IN ('Male', 'Female')),
+    Percentage NUMBER,
+    SClass NUMBER,
+    Sec CHAR,
+    Stream VARCHAR(10) CHECK (Stream IN ('Science', 'Commerce')),
+    DOB DATE
+);
+
+b) Insert 6 records into STUDENT table:
+
+INSERT INTO STUDENT (StdID, StdName, Sex, Percentage, SClass, Sec, Stream, DOB)
+VALUES
+(101, 'John Doe', 'Male', 85, 10, 'A', 'Science', '2005-01-15'),
+(102, 'Jane Smith', 'Female', 78, 10, 'B', 'Commerce', '2004-03-20'),
+(103, 'Alice Johnson', 'Female', 90, 11, 'A', 'Science', '2003-07-10'),
+(104, 'Bob Brown', 'Male', 72, 11, 'B', 'Commerce', '2003-11-05'),
+(105, 'Mary Davis', 'Female', 82, 12, 'A', 'Commerce', '2002-05-25'),
+(106, 'David Miller', 'Male', 88, 12, 'B', 'Science', '2001-09-30');
+
+c) Display all records from STUDENT table:
+
+SELECT * FROM STUDENT;
+
+d) Display only name and date of birth from the STUDENT table:
+
+SELECT StdName, DOB FROM STUDENT;
+
+e) Add a column TeacherID as VARCHAR(20) to the STUDENT table:
+
+ALTER TABLE STUDENT ADD TeacherID VARCHAR(20);
+
+f) Display student name, stream, and percentage where percentage is more than 80:
+
+SELECT StdName, Stream, Percentage
+FROM STUDENT
+WHERE Percentage > 80;
+
+g) Delete records from STUDENT table where StdID is 1016:
+
+DELETE FROM STUDENT WHERE StdID = 1016;
+
+h) Change a student's name from 'SWATI' to 'VERMA' and percentage to 86 where StdID is 1014:
+
+UPDATE STUDENT SET StdName = 'VERMA', Percentage = 86 WHERE StdID = 1014;
+
+i) Drop (delete) TeacherID field from the table:
+
+ALTER TABLE STUDENT DROP COLUMN TeacherID;
